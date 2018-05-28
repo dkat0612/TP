@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dkat's collection</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+    <h1>Dkat's wood wonders</h1>
+    <img class="logoImg" th:src="@{/images/welcome.jpg}"/>
+    <form>
+        <div class="grid">
+            <div th:each="releaseDate : ${releaseDates}">
+                <span th:text="${releaseDate}">releaseDate</span><br/>
+                <div th:each="puzzle : ${puzzlesByReleaseDate.get(releaseDate)}">
+                <span th:text="${puzzle.name}">puzzleName</span><br/>
+            </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

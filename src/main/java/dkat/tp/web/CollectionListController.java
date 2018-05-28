@@ -27,7 +27,7 @@ public class CollectionListController {
                             new Wood(1L, "Purpleheart"),
                             new Wood(2L, "Yellowheart"),
                             new Wood(3L, "Paduak")),
-                            Utils.dateFormat.parse("12/11/2017"),
+                            Utils.dateFormat.parse("12/10/2017"),
                             new Author(1L, "Alfons Eyckmans"),
                             7.518, "25.15.7.19.3.6.5.2.1.3.2.4",
                             Arrays.asList("static/images/Frankenstein/fr1.JPG",
@@ -45,11 +45,16 @@ public class CollectionListController {
         }
 
         List<Date> releases = puzzles.stream()
-                .map(Puzzle::getReleaseDate)
+                .map(Puzzle::getReleaseDate).distinct()
                 .collect(Collectors.toCollection(ArrayList::new));
-        for(Date releaseDate : releases)
-            model.addAttribute(Utils.dateFormat.format(releaseDate), puzzles.stream().filter(puzzle -> releaseDate.compareTo(puzzle.getReleaseDate())==0).
+                model.addAttribute("releaseDates", releases);
+        Map<Date, ArrayList> puzzlesByReleaseDate = new HashMap<>();
+        for(Date releaseDate : releases){
+            puzzlesByReleaseDate.put(releaseDate, puzzles.stream().filter(puzzle -> releaseDate.compareTo(puzzle.getReleaseDate())==0).
                     collect(Collectors.toCollection(ArrayList::new)));
+        }
+        model.addAttribute("puzzlesByReleaseDate", puzzlesByReleaseDate);
+
 
         return "collection";
     }
