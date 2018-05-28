@@ -27,7 +27,7 @@ public class CollectionListController {
                             new Wood(1L, "Purpleheart"),
                             new Wood(2L, "Yellowheart"),
                             new Wood(3L, "Paduak")),
-                            Utils.dateFormat.parse("12/10/2017"),
+                            Utils.dateFormat.parse("12/11/2017"),
                             new Author(1L, "Alfons Eyckmans"),
                             7.518, "25.15.7.19.3.6.5.2.1.3.2.4",
                             Arrays.asList("static/images/Frankenstein/fr1.JPG",
